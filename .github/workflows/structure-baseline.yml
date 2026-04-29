@@ -1,0 +1,24 @@
+name: Structure baseline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Validate baseline files
+        run: |
+          test -f README.md
+          test -f SECURITY.md
+          test -f .github/CODEOWNERS
+          test -f .github/dependabot.yml
+          test -f .gitignore
